@@ -5,7 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Shell](https://img.shields.io/badge/Shell-Zsh-green.svg)](https://www.zsh.org/)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey.svg)](https://github.com)
-[![Test](https://github.com/你的用户名/terminal-boost/workflows/Test%20Installation%20Scripts/badge.svg)](https://github.com/你的用户名/terminal-boost/actions)
 
 Terminal Boost 是一个自动化脚本，帮助你快速配置一个美观、高效、功能丰富的终端环境。告别繁琐的手动配置，一条命令搞定所有！
 
@@ -92,17 +91,23 @@ btop
 
 ### 一键安装
 
+**复制以下命令到终端执行**（已可直接运行）：
+
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/你的用户名/terminal-boost/main/install.sh)
+bash <(curl -fsSL https://raw.githubusercontent.com/joeseesun/terminal-boost/main/install.sh)
 ```
 
 或者克隆仓库后安装：
 
 ```bash
-git clone https://github.com/你的用户名/terminal-boost.git
+# 克隆仓库
+git clone https://github.com/joeseesun/terminal-boost.git
+
+# 进入目录
 cd terminal-boost
-chmod +x install.sh
-./install.sh
+
+# 赋予执行权限并运行
+chmod +x install.sh && ./install.sh
 ```
 
 ### 安装过程
@@ -117,7 +122,7 @@ chmod +x install.sh
 
 ### 首次启动
 
-安装完成后，重启终端或执行：
+安装完成后，**重启终端**或执行以下命令：
 
 ```bash
 source ~/.zshrc
@@ -176,11 +181,10 @@ btop           # 漂亮的资源监控界面
 
 ## 🗑️ 卸载
 
-如果想要完全移除 Terminal Boost：
+如果想要完全移除 Terminal Boost，**进入项目目录后运行**：
 
 ```bash
-cd terminal-boost
-./uninstall.sh
+cd terminal-boost && ./uninstall.sh
 ```
 
 卸载脚本会：
@@ -192,7 +196,14 @@ cd terminal-boost
 **注意**: CLI 工具（bat, eza 等）不会被自动卸载，如需卸载请手动执行：
 
 ```bash
+# macOS
 brew uninstall bat eza fzf ripgrep fd tldr thefuck btop autojump
+
+# Ubuntu/Debian
+sudo apt remove bat exa fzf ripgrep fd-find tldr thefuck btop autojump
+
+# Arch Linux
+sudo pacman -R bat eza fzf ripgrep fd tldr thefuck btop autojump
 ```
 
 ## 📂 配置文件说明
@@ -256,7 +267,7 @@ A: 需要安装支持 Powerline 字体的终端字体。推荐字体：
 
 ### Q: 命令找不到 (command not found)？
 
-A: 确保执行了 `source ~/.zshrc` 重新加载配置。
+A: 确保执行了 `source ~/.zshrc` 重新加载配置，或者**重启终端**。
 
 ### Q: Linux 上如何安装？
 
@@ -271,13 +282,13 @@ A: 脚本已支持主流 Linux 发行版的自动安装：
 
 ```bash
 # Ubuntu/Debian
-sudo apt install zsh git curl
+sudo apt install -y zsh git curl
 
 # Arch Linux
-sudo pacman -S zsh git curl
+sudo pacman -S --noconfirm zsh git curl
 
 # Fedora/RHEL/CentOS
-sudo dnf install zsh git curl
+sudo dnf install -y zsh git curl
 ```
 
 **其他发行版**: 脚本会提示手动安装工具列表，请参考各工具的官方文档。
@@ -287,19 +298,30 @@ sudo dnf install zsh git curl
 A: 使用 Homebrew 或系统包管理器：
 
 ```bash
-# macOS
+# macOS - 更新所有工具
 brew upgrade
 
-# Oh My Zsh
+# Oh My Zsh - 更新框架
 omz update
 
-# Powerlevel10k
+# Powerlevel10k - 更新主题
 git -C ~/.oh-my-zsh/custom/themes/powerlevel10k pull
 ```
 
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+## 📱 关注作者
+
+如果这个项目对你有帮助，欢迎关注我获取更多技术分享：
+
+- **X (Twitter)**: [@vista8](https://x.com/vista8)
+- **微信公众号「乔木新知」**:
+
+<p align="center">
+  <img src="https://github.com/joeseesun/terminal-boost/blob/main/assets/wechat-qr.jpg?raw=true" alt="乔木新知公众号二维码" width="300">
+</p>
 
 ## 📄 许可证
 
