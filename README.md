@@ -6,38 +6,48 @@
 [![Shell](https://img.shields.io/badge/Shell-Zsh-green.svg)](https://www.zsh.org/)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey.svg)](https://github.com)
 
-Terminal Boost 是一个自动化脚本，帮助你快速配置一个美观、高效、功能丰富的终端环境。告别繁琐的手动配置，一条命令搞定所有！
+## 为什么需要 Terminal Boost？
 
-## 📸 效果展示
+如果你正在经历这些痛点：
 
-安装完成后的终端效果：
+- ❌ 终端界面单调，信息不够直观
+- ❌ 传统命令行工具输出难以阅读
+- ❌ 手动配置 Oh My Zsh 太繁琐，插件管理混乱
+- ❌ 不知道有哪些好用的现代 CLI 工具
+- ❌ 想要提升效率但缺少工具支持
 
-> **提示**: 添加你的终端截图到这里，展示：
-> - Powerlevel10k 主题效果
-> - 语法高亮和智能建议
-> - 现代工具（bat、eza）的彩色输出
-> - 推荐尺寸: 1200x800 或更大
+**Terminal Boost 一键帮你解决所有问题！**
+
+✅ **美观** - Powerlevel10k 主题 + 语法高亮 + 智能建议
+✅ **高效** - 现代工具替代传统命令（速度提升 10-100x）
+✅ **智能** - 自动补全、模糊搜索、目录跳转
+✅ **省心** - 一条命令完成所有配置，无需手动调试
+
+## 🚀 一键安装（复制即可运行）
 
 ```bash
-# 使用 bat 查看文件（语法高亮）
-bat install.sh
-
-# 使用 eza 列出文件（彩色图标）
-eza -l --icons
-
-# 使用 btop 监控系统
-btop
+bash <(curl -fsSL https://raw.githubusercontent.com/joeseesun/terminal-boost/main/install.sh)
 ```
 
-## ✨ 特性
+**仅需 1 分钟**，自动完成：Oh My Zsh + 11 个实用插件 + Powerlevel10k 主题 + 9 个现代 CLI 工具
+
+---
+
+## ✨ 核心特性
 
 ### 🎨 美化增强
-- **Powerlevel10k 主题** - 快速、可定制、信息丰富的终端提示符
-- **语法高亮** - 实时命令语法高亮
-- **智能建议** - 基于历史记录的命令自动补全
-- **彩色输出** - man 手册、ls 列表等都支持彩色显示
 
-### 🛠️ 现代工具
+| 功能 | 效果 |
+|------|------|
+| **Powerlevel10k 主题** | 快速、可定制、信息丰富的终端提示符 |
+| **语法高亮** | 实时命令语法高亮，错误命令变红 |
+| **智能建议** | 基于历史记录的命令自动补全 |
+| **彩色输出** | man 手册、ls 列表都支持彩色显示 |
+
+### 🛠️ 现代工具替代
+
+告别低效的传统命令，拥抱现代化工具：
+
 | 传统工具 | 现代替代 | 功能增强 |
 |---------|---------|---------|
 | `cat` | `bat` | 语法高亮 + Git 集成 + 行号 |
@@ -47,73 +57,112 @@ btop
 | `man` | `tldr` | 简化文档 + 实用示例 |
 | `top` | `btop` | 可视化资源监控 + 鼠标支持 |
 
-### 🔌 实用插件
+### 🔌 实用插件（11 个）
+
 - **autojump** - 智能目录跳转（`j project` 直达常用目录）
 - **fzf** - 命令行模糊搜索（历史、文件、进程等）
 - **thefuck** - 自动纠正错误命令
+- **zsh-autosuggestions** - 智能命令建议
+- **zsh-syntax-highlighting** - 实时语法高亮
 - **extract** - 统一的解压命令
 - **web-search** - 终端直接搜索 Google/Stack Overflow
 - **copypath / copyfile** - 快速复制文件路径或内容
+- **sudo** - 双击 ESC 添加 sudo
+- **colored-man-pages** - 彩色 man 手册
+- **git** - Git 命令别名
+
+---
 
 ## 📦 安装内容
 
-安装脚本将为你配置：
+安装脚本将自动为你配置：
 
 1. **Oh My Zsh** - Zsh 配置管理框架
 2. **Powerlevel10k** - 现代化主题
-3. **Zsh 插件** (11个)
-   - zsh-autosuggestions
-   - zsh-syntax-highlighting
-   - autojump
-   - sudo (双击 ESC 添加 sudo)
-   - extract
-   - web-search
-   - copypath
-   - copyfile
-   - history
-   - colored-man-pages
-   - git
-4. **CLI 工具**
-   - bat, eza, ripgrep, fd
-   - fzf, tldr, thefuck
-   - btop, autojump
+3. **Zsh 插件** - 11 个实用插件
+4. **现代 CLI 工具** - bat, eza, ripgrep, fd, fzf, tldr, thefuck, btop, autojump
 
-## 🚀 快速开始
+---
 
-### 前置要求
+## 🎯 使用示例
 
-- **操作系统**: macOS 或 Linux
-  - **macOS**: 10.15+ (自带 Zsh)
-  - **Linux**: Ubuntu/Debian、Arch/Manjaro、Fedora/RHEL/CentOS 或其他发行版
-- **Shell**: Zsh (macOS 默认已安装，Linux 可能需要手动安装)
+### 现代工具（自动替代）
+
+安装后，传统命令自动使用现代工具：
+
+```bash
+# 查看文件内容（带语法高亮）
+cat README.md          # 自动使用 bat
+
+# 列出文件（带彩色图标）
+ls                     # 自动使用 eza
+ll                     # 详细列表
+la                     # 包含隐藏文件
+
+# 树形查看目录
+lt                     # 树形视图
+
+# 搜索文件内容
+grep "keyword"         # 自动使用 ripgrep
+
+# 快捷命令
+c                      # 相当于 clear
+..                     # 相当于 cd ..
+...                    # 相当于 cd ../..
+```
+
+### 智能工具
+
+```bash
+# 目录智能跳转
+j Downloads            # 跳转到最常访问的 Downloads 目录
+
+# 模糊搜索历史命令
+Ctrl+R                 # 按下后输入关键词搜索
+
+# 自动纠错（输入错误命令后）
+fuck                   # 自动纠正上一条命令
+
+# 快速查看命令用法
+tldr tar               # 查看 tar 的简化文档
+
+# 统一解压
+extract file.zip       # 支持 .zip, .tar.gz, .rar 等所有格式
+
+# 系统监控
+btop                   # 漂亮的资源监控界面
+```
+
+---
+
+## 📋 前置要求
+
+- **操作系统**: macOS 10.15+ 或 Linux（Ubuntu/Debian、Arch/Manjaro、Fedora/RHEL/CentOS）
+- **Shell**: Zsh（macOS 默认已安装）
 - **网络**: 需要访问 GitHub 和包管理器
 - **权限**: 需要 sudo 权限安装系统包
 
-### 一键安装
-
-**复制以下命令到终端执行**（已可直接运行）：
+**Linux 用户**需先安装 Zsh：
 
 ```bash
-bash <(curl -fsSL https://raw.githubusercontent.com/joeseesun/terminal-boost/main/install.sh)
+# Ubuntu/Debian
+sudo apt install -y zsh git curl
+
+# Arch Linux
+sudo pacman -S --noconfirm zsh git curl
+
+# Fedora/RHEL/CentOS
+sudo dnf install -y zsh git curl
 ```
 
-或者克隆仓库后安装：
+---
 
-```bash
-# 克隆仓库
-git clone https://github.com/joeseesun/terminal-boost.git
+## 🔧 安装过程
 
-# 进入目录
-cd terminal-boost
+脚本会自动完成以下步骤：
 
-# 赋予执行权限并运行
-chmod +x install.sh && ./install.sh
-```
-
-### 安装过程
-
-1. 脚本会自动检测操作系统
-2. 安装 Homebrew（如果是 macOS 且未安装）
+1. 检测操作系统类型
+2. 安装 Homebrew（macOS 且未安装时）
 3. 备份现有配置文件（`.zshrc`）
 4. 安装 Oh My Zsh、插件、主题
 5. 安装现代 CLI 工具
@@ -122,7 +171,7 @@ chmod +x install.sh && ./install.sh
 
 ### 首次启动
 
-安装完成后，**重启终端**或执行以下命令：
+安装完成后，**重启终端**或执行：
 
 ```bash
 source ~/.zshrc
@@ -130,58 +179,11 @@ source ~/.zshrc
 
 首次启动会运行 **Powerlevel10k 配置向导**，根据提示选择你喜欢的样式即可。
 
-## 🎯 使用示例
-
-### 现代工具别名
-
-安装后，以下命令会自动使用现代工具：
-
-```bash
-# 查看文件内容（带语法高亮）
-cat README.md
-
-# 列出文件（带彩色图标）
-ls
-ll
-la
-
-# 树形查看目录
-lt
-
-# 搜索文件内容
-grep "keyword"
-
-# 快捷命令
-c        # 相当于 clear
-..       # 相当于 cd ..
-...      # 相当于 cd ../..
-```
-
-### 智能工具
-
-```bash
-# 目录智能跳转
-j Downloads    # 跳转到最常访问的 Downloads 目录
-
-# 模糊搜索历史命令
-Ctrl+R         # 按下后输入关键词搜索
-
-# 自动纠错（输入错误命令后）
-fuck           # 自动纠正上一条命令
-
-# 快速查看命令用法
-tldr tar       # 查看 tar 的简化文档
-
-# 统一解压
-extract file.zip    # 支持 .zip, .tar.gz, .rar 等所有格式
-
-# 系统监控
-btop           # 漂亮的资源监控界面
-```
+---
 
 ## 🗑️ 卸载
 
-如果想要完全移除 Terminal Boost，**进入项目目录后运行**：
+如果想要完全移除 Terminal Boost：
 
 ```bash
 cd terminal-boost && ./uninstall.sh
@@ -206,17 +208,7 @@ sudo apt remove bat exa fzf ripgrep fd-find tldr thefuck btop autojump
 sudo pacman -R bat eza fzf ripgrep fd tldr thefuck btop autojump
 ```
 
-## 📂 配置文件说明
-
-安装后的关键文件：
-
-```
-~/.zshrc                    # Zsh 主配置文件
-~/.p10k.zsh                 # Powerlevel10k 配置
-~/.fzf.zsh                  # fzf 配置
-~/.oh-my-zsh/               # Oh My Zsh 安装目录
-~/.zshrc.backup.*           # 原配置备份
-```
+---
 
 ## 🛠️ 自定义配置
 
@@ -257,6 +249,22 @@ alias gs='git status'
 alias gp='git push'
 ```
 
+---
+
+## 📂 配置文件说明
+
+安装后的关键文件：
+
+```
+~/.zshrc                    # Zsh 主配置文件
+~/.p10k.zsh                 # Powerlevel10k 配置
+~/.fzf.zsh                  # fzf 配置
+~/.oh-my-zsh/               # Oh My Zsh 安装目录
+~/.zshrc.backup.*           # 原配置备份
+```
+
+---
+
 ## ❓ 常见问题
 
 ### Q: 安装后主题显示不正确？
@@ -268,30 +276,6 @@ A: 需要安装支持 Powerline 字体的终端字体。推荐字体：
 ### Q: 命令找不到 (command not found)？
 
 A: 确保执行了 `source ~/.zshrc` 重新加载配置，或者**重启终端**。
-
-### Q: Linux 上如何安装？
-
-A: 脚本已支持主流 Linux 发行版的自动安装：
-
-**自动支持的发行版**:
-- **Ubuntu/Debian**: 使用 apt，自动从 GitHub 下载 bat、eza
-- **Arch/Manjaro**: 使用 pacman，所有工具均可通过官方仓库安装
-- **Fedora/RHEL/CentOS**: 使用 dnf，部分工具需手动安装
-
-**安装前准备**（所有 Linux 发行版）:
-
-```bash
-# Ubuntu/Debian
-sudo apt install -y zsh git curl
-
-# Arch Linux
-sudo pacman -S --noconfirm zsh git curl
-
-# Fedora/RHEL/CentOS
-sudo dnf install -y zsh git curl
-```
-
-**其他发行版**: 脚本会提示手动安装工具列表，请参考各工具的官方文档。
 
 ### Q: 如何更新工具？
 
@@ -307,6 +291,8 @@ omz update
 # Powerlevel10k - 更新主题
 git -C ~/.oh-my-zsh/custom/themes/powerlevel10k pull
 ```
+
+---
 
 ## 🤝 贡献
 
