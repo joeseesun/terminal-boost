@@ -114,6 +114,20 @@ install_zsh_plugins() {
     fi
 }
 
+# 检测 Linux 发行版
+detect_linux_distro() {
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        DISTRO=$ID
+    elif [ -f /etc/lsb-release ]; then
+        . /etc/lsb-release
+        DISTRO=$DISTRIB_ID
+    else
+        DISTRO="unknown"
+    fi
+    log_info "检测到 Linux 发行版: $DISTRO"
+}
+
 # 安装 CLI 工具
 install_cli_tools() {
     log_info "安装现代 CLI 工具..."
@@ -126,8 +140,78 @@ install_cli_tools() {
         $(brew --prefix)/opt/fzf/install --all --no-bash --no-fish
         log_success "CLI 工具安装完成"
     else
-        log_warning "Linux 系统请手动安装: fzf bat eza ripgrep fd tldr thefuck btop autojump"
-        log_info "参考: https://github.com/sharkdp/bat#installation"
+        # Linux 系统
+        detect_linux_distro
+
+        case "$DISTRO" in
+            ubuntu|debian)
+                log_info "使用 apt 安装工具..."
+                sudo apt-get update
+                sudo apt-get install -y fzf ripgrep fd-find autojump
+
+                # bat 需要从 GitHub 下载 deb 包或从源安装
+                if ! command -v bat &> /dev/null; then
+                    log_info "从 GitHub 安装 bat..."
+                    wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_amd64.deb
+                    sudo dpkg -i bat_0.24.0_amd64.deb
+                    rm bat_0.24.0_amd64.deb
+                fi
+
+                # eza 需要从 GitHub 安装
+                if ! command -v eza &> /dev/null; then
+                    log_info "从 GitHub 安装 eza..."
+                    wget -q https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz
+                    sudo tar xzf eza_x86_64-unknown-linux-gnu.tar.gz -C /usr/local/bin
+                    rm eza_x86_64-unknown-linux-gnu.tar.gz
+                fi
+
+                # btop
+                if ! command -v btop &> /dev/null; then
+                    log_info "安装 btop..."
+                    sudo apt-get install -y btop || log_warning "btop 安装失败，可手动安装"
+                fi
+
+                log_success "CLI 工具安装完成"
+                ;;
+
+            arch|manjaro)
+                log_info "使用 pacman 安装工具..."
+                sudo pacman -Syu --noconfirm fzf bat eza ripgrep fd btop autojump
+                log_success "CLI 工具安装完成"
+                ;;
+
+            fedora|rhel|centos)
+                log_info "使用 dnf 安装工具..."
+                sudo dnf install -y fzf bat ripgrep fd-find autojump
+
+                # eza 需要手动安装
+                if ! command -v eza &> /dev/null; then
+                    log_warning "eza 需要手动安装: https://github.com/eza-community/eza"
+                fi
+                log_success "CLI 工具安装完成"
+                ;;
+
+            *)
+                log_warning "未识别的 Linux 发行版，请手动安装工具:"
+                echo "  • fzf - 模糊搜索"
+                echo "  • bat - cat 替代"
+                echo "  • eza - ls 替代"
+                echo "  • ripgrep - grep 替代"
+                echo "  • fd - find 替代"
+                echo "  • btop - 系统监控"
+                echo "  • autojump - 目录跳转"
+                log_info "参考: https://github.com/sharkdp/bat#installation"
+                ;;
+        esac
+
+        # 配置 fzf (适用于所有 Linux)
+        if command -v fzf &> /dev/null; then
+            if [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+                # Ubuntu/Debian
+                mkdir -p ~/.fzf
+                cp /usr/share/doc/fzf/examples/key-bindings.zsh ~/.fzf/
+            fi
+        fi
     fi
 }
 
@@ -203,17 +287,23 @@ alias grep='rg'
 # ============================================
 alias c='clear'
 alias ..='cd ..'
-alias ...='cd ../..'
+alias ...='cd ../...'
 alias ~='cd ~'
 
 # ============================================
 # 工具集成
 # ============================================
-# autojump
-[ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+# autojump (跨平台)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  [ -f $(brew --prefix)/etc/profile.d/autojump.sh ] && . $(brew --prefix)/etc/profile.d/autojump.sh
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # Linux
+  [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
+fi
 
-# thefuck
-eval $(thefuck --alias)
+# thefuck (如果已安装)
+command -v thefuck &> /dev/null && eval $(thefuck --alias)
 
 # ============================================
 # Powerlevel10k 即时提示

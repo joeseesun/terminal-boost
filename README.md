@@ -5,8 +5,30 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Shell](https://img.shields.io/badge/Shell-Zsh-green.svg)](https://www.zsh.org/)
 [![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux-lightgrey.svg)](https://github.com)
+[![Test](https://github.com/你的用户名/terminal-boost/workflows/Test%20Installation%20Scripts/badge.svg)](https://github.com/你的用户名/terminal-boost/actions)
 
 Terminal Boost 是一个自动化脚本，帮助你快速配置一个美观、高效、功能丰富的终端环境。告别繁琐的手动配置，一条命令搞定所有！
+
+## 📸 效果展示
+
+安装完成后的终端效果：
+
+> **提示**: 添加你的终端截图到这里，展示：
+> - Powerlevel10k 主题效果
+> - 语法高亮和智能建议
+> - 现代工具（bat、eza）的彩色输出
+> - 推荐尺寸: 1200x800 或更大
+
+```bash
+# 使用 bat 查看文件（语法高亮）
+bat install.sh
+
+# 使用 eza 列出文件（彩色图标）
+eza -l --icons
+
+# 使用 btop 监控系统
+btop
+```
 
 ## ✨ 特性
 
@@ -62,8 +84,11 @@ Terminal Boost 是一个自动化脚本，帮助你快速配置一个美观、�
 ### 前置要求
 
 - **操作系统**: macOS 或 Linux
-- **Shell**: Zsh (macOS 默认已安装)
+  - **macOS**: 10.15+ (自带 Zsh)
+  - **Linux**: Ubuntu/Debian、Arch/Manjaro、Fedora/RHEL/CentOS 或其他发行版
+- **Shell**: Zsh (macOS 默认已安装，Linux 可能需要手动安装)
 - **网络**: 需要访问 GitHub 和包管理器
+- **权限**: 需要 sudo 权限安装系统包
 
 ### 一键安装
 
@@ -235,7 +260,14 @@ A: 确保执行了 `source ~/.zshrc` 重新加载配置。
 
 ### Q: Linux 上如何安装？
 
-A: Linux 系统需要手动安装部分 CLI 工具：
+A: 脚本已支持主流 Linux 发行版的自动安装：
+
+**自动支持的发行版**:
+- **Ubuntu/Debian**: 使用 apt，自动从 GitHub 下载 bat、eza
+- **Arch/Manjaro**: 使用 pacman，所有工具均可通过官方仓库安装
+- **Fedora/RHEL/CentOS**: 使用 dnf，部分工具需手动安装
+
+**安装前准备**（所有 Linux 发行版）:
 
 ```bash
 # Ubuntu/Debian
@@ -244,8 +276,11 @@ sudo apt install zsh git curl
 # Arch Linux
 sudo pacman -S zsh git curl
 
-# 其他工具请参考各自的安装文档
+# Fedora/RHEL/CentOS
+sudo dnf install zsh git curl
 ```
+
+**其他发行版**: 脚本会提示手动安装工具列表，请参考各工具的官方文档。
 
 ### Q: 如何更新工具？
 

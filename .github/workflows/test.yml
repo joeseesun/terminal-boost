@@ -1,0 +1,63 @@
+name: Test Installation Scripts
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check script syntax
+        run: |
+          bash -n install.sh
+          bash -n uninstall.sh
+
+      - name: Test Oh My Zsh installation check
+        run: |
+          # Test the check_os function
+          bash -c 'source install.sh && check_os'
+
+      - name: Verify file permissions
+        run: |
+          test -x install.sh || exit 1
+          test -x uninstall.sh || exit 1
+
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Zsh
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh
+
+      - name: Check script syntax
+        run: |
+          bash -n install.sh
+          bash -n uninstall.sh
+
+      - name: Test OS detection
+        run: |
+          bash -c 'source install.sh && check_os'
+
+      - name: Verify file permissions
+        run: |
+          test -x install.sh || exit 1
+          test -x uninstall.sh || exit 1
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: '.'
+          severity: warning
