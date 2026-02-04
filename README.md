@@ -303,10 +303,10 @@ git -C ~/.oh-my-zsh/custom/themes/powerlevel10k pull
 如果这个项目对你有帮助，欢迎关注我获取更多技术分享：
 
 - **X (Twitter)**: [@vista8](https://x.com/vista8)
-- **微信公众号「乔木新知」**:
+- **微信公众号「向阳乔木推荐看」**:
 
 <p align="center">
-  <img src="https://github.com/joeseesun/terminal-boost/blob/main/assets/wechat-qr.jpg?raw=true" alt="乔木新知公众号二维码" width="300">
+  <img src="https://github.com/joeseesun/terminal-boost/blob/main/assets/wechat-qr.jpg?raw=true" alt="向阳乔木推荐看公众号二维码" width="300">
 </p>
 
 ## 📄 许可证
